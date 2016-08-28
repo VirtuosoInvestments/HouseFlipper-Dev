@@ -11,9 +11,11 @@ namespace HouseFlipper.WebSite.Registration
     {
         static void Main(string[] args)
         {
-            // SAMPLE
-            ServerManager serverManager = new ServerManager();
-            Site mySite = serverManager.Sites.Add("Racing Cars Site", "d:\\inetpub\\wwwroot\racing",  8080);
+            string webSiteName = "House Flipper - DEV";
+            string physicalPath = @"C:\GitHub\Sites\HouseFlipper\Dev\WebSite";
+            int port = 8080;
+            ServerManager serverManager = new ServerManager();            
+            Site mySite = serverManager.Sites.Add(webSiteName, physicalPath,  port);
             mySite.ServerAutoStart = true;
             serverManager.CommitChanges();
         }
