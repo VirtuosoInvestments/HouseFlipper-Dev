@@ -55,10 +55,10 @@ namespace Test.HouseFlipper.Registration
             /* Step 2: Read output from file            
              */
             string output = p.StandardOutput.ReadToEnd();
-            Console.WriteLine("Output: {0}", output);
+            Console.WriteLine("Output:\n {0}", output);
 
             string error = p.StandardError.ReadToEnd();
-            Console.WriteLine("Error: {0}", error);
+            Console.WriteLine("Error:\n {0}", error);
 
             Assert.IsTrue(string.IsNullOrWhiteSpace(error),"Error: Was not expecting error output!");
             Assert.IsTrue(!string.IsNullOrWhiteSpace(output), "Error: Expecting -help would show some output, but appears nothing has been printed to the screen!");

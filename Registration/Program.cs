@@ -74,7 +74,7 @@ namespace HouseFlipper.WebSite.Registration
 
         private static void Help()
         {
-            var exeName = System.Reflection.Assembly.GetExecutingAssembly().FullName;
+            var exeName = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name + ".exe";
             var lines = new string[]
             {               
                 exeName + " <options>",
