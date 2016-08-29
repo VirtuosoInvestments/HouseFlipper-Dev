@@ -9,7 +9,7 @@ namespace Test.HouseFlipper.Registration
 {
     [TestFixture]
     [Category(TestRunType.Integration)]
-    public class RegistrationTest
+    public class RegistrationOptionsTest
     {
         private string exe = @"C:\GitHub\Sites\HouseFlipper\Dev\Registration\bin\debug\HouseFlipper.WebSite.Registration.exe";
         [SetUp]
