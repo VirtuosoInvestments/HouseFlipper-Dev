@@ -32,14 +32,14 @@ namespace Test.HouseFlipper.Registration
              *    -protocol     Web protocol, i.e. http (default)        
              *    -directory    Physical location of website root directory  
              */
-            
+
             /* Step 1: Run HouseFlipper.Registration -help
              */
-            
+
             Process p = new Process();
             p.StartInfo = new ProcessStartInfo(exe, "-help");
             p.StartInfo.CreateNoWindow = true;
-            p.StartInfo.RedirectStandardError = true;            
+            p.StartInfo.RedirectStandardError = true;
             p.StartInfo.RedirectStandardOutput = true;
             p.StartInfo.UseShellExecute = false;
             p.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
@@ -56,10 +56,10 @@ namespace Test.HouseFlipper.Registration
              */
             string output = p.StandardOutput.ReadToEnd();
             Console.WriteLine("Output: {0}", output);
-           
+
             string error = p.StandardError.ReadToEnd();
             Console.WriteLine("Error: {0}", error);
-            
+
             Assert.IsTrue(string.IsNullOrWhiteSpace(error));
             Assert.IsTrue(!string.IsNullOrWhiteSpace(output));
         }
@@ -73,6 +73,17 @@ namespace Test.HouseFlipper.Registration
              *    b. -port 8080            
              */
             throw new NotImplementedException();
+        }
+
+        /* Ensures Environment parameter works
+         */
+        [Test]
+        public void Environment()
+        {
+            /* Environment Test
+             * 1. Run HouseFlipper.Website.Registration.exe with args:
+             *    a. -environment foo
+             */
         }
     }
 }
