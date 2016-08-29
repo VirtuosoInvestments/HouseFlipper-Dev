@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using System;
 using System.Diagnostics;
+using System.IO;
 using Test.HouseFlipper.Common;
 
 namespace Test.HouseFlipper.Registration
@@ -9,6 +10,7 @@ namespace Test.HouseFlipper.Registration
     [Category(TestRunType.Integration)]
     public class RegistrationTest
     {
+        private string exe = @"C:\GitHub\Sites\HouseFlipper\Dev\Registration\bin\debug\HouseFlipper.WebSite.Registration.exe";
         [SetUp]
         public void Setup()
         {
@@ -16,6 +18,7 @@ namespace Test.HouseFlipper.Registration
              * 1. Locate the HouseFlipper.Website.Registration.exe
              * 2. Verify file exists             
              */
+            Assert.IsTrue(File.Exists(exe));
         }
 
         [Test]
@@ -31,21 +34,31 @@ namespace Test.HouseFlipper.Registration
             
             /* Step 1: Run HouseFlipper.Registration -help
              */
-            var exe = @"C:\C:\GitHub\Sites\HouseFlipper\Dev\Registration\bin\debug\HouseFlipper.WebSite.Registration.exe";
+            
             Process p = new Process();
             p.StartInfo = new ProcessStartInfo(exe, "-help");
             p.StartInfo.CreateNoWindow = true;
             p.StartInfo.RedirectStandardError = true;            
             p.StartInfo.RedirectStandardOutput = true;
-            p.StartInfo.UseShellExecute = true;
+            p.StartInfo.UseShellExecute = false;
             p.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             p.Start();
+            var exited = p.WaitForExit((int)TimeSpan.FromMinutes(1).TotalMilliseconds);
+            if (!exited)
+            {
+                //kill it
+                p.Kill();
+                Assert.Fail();
+            }
 
             /* Step 2: Read output from file            
              */
             string output = p.StandardOutput.ReadToEnd();
+            Console.WriteLine("Output: {0}", output);
+           
             string error = p.StandardError.ReadToEnd();
-            p.WaitForExit((int)TimeSpan.FromMinutes(1).TotalMilliseconds);
+            Console.WriteLine("Error: {0}", error);
+            
             Assert.IsTrue(string.IsNullOrWhiteSpace(error));
             Assert.IsTrue(!string.IsNullOrWhiteSpace(output));
         }
@@ -58,6 +71,7 @@ namespace Test.HouseFlipper.Registration
              *    a. -environment demo
              *    b. -port 8080            
              */
+            throw new NotImplementedException();
         }
     }
 }

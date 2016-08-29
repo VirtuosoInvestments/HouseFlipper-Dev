@@ -49,8 +49,8 @@ namespace HouseFlipper.WebSite.Registration
             mySite.ServerAutoStart = true;
             serverManager.CommitChanges();
 
-            Console.WriteLine("Program ended. Hit any key to exit!");
-            Console.ReadKey();
+            //Console.WriteLine("Program ended. Hit any key to exit!");
+            //Console.ReadKey();
         }
     }
 }
