@@ -29,7 +29,8 @@ namespace Test.HouseFlipper.Registration
              * 2. Veriy help shows 
              *    -environment  Environment to setup the House Flipper website for, i.e. DEMO
              *    -port         Web port binding, i.e. 8080 (default)
-             *    -protocol     Web protocol, i.e. http (default)          
+             *    -protocol     Web protocol, i.e. http (default)        
+             *    -directory    Physical location of website root directory  
              */
             
             /* Step 1: Run HouseFlipper.Registration -help
