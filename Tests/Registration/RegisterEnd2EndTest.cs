@@ -50,6 +50,10 @@ namespace Test.HouseFlipper.Registration
                 "URL: http://localhost:8080"
             };
             VerifyExeOutput(output, expectedOutput);
+
+            /* Step 4: Go to Chrome and verify you can access address http://localhost:8080
+             */
+            throw new NotImplementedException();
         }
 
         #region Verification methods
