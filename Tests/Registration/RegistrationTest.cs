@@ -63,27 +63,5 @@ namespace Test.HouseFlipper.Registration
             Assert.IsTrue(string.IsNullOrWhiteSpace(error));
             Assert.IsTrue(!string.IsNullOrWhiteSpace(output));
         }
-
-        [Test]
-        public void AddWebsiteToIIS()
-        {
-            /* Add Website to IIS test
-             * 1. Run HouseFlipper.Website.Registration.exe with args:
-             *    a. -environment demo
-             *    b. -port 8080            
-             */
-            throw new NotImplementedException();
-        }
-
-        /* Ensures Environment parameter works
-         */
-        [Test]
-        public void Environment()
-        {
-            /* Environment Test
-             * 1. Run HouseFlipper.Website.Registration.exe with args:
-             *    a. -environment foo
-             */
-        }
     }
 }
