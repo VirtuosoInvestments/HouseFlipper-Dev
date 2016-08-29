@@ -1,4 +1,6 @@
 ﻿using NUnit.Framework;
+using System;
+using System.Diagnostics;
 using Test.HouseFlipper.Common;
 
 namespace Test.HouseFlipper.Registration
@@ -26,6 +28,26 @@ namespace Test.HouseFlipper.Registration
              *    -port         Web port binding, i.e. 8080 (default)
              *    -protocol     Web protocol, i.e. http (default)          
              */
+            
+            /* Step 1: Run HouseFlipper.Registration -help
+             */
+            var exe = @"C:\C:\GitHub\Sites\HouseFlipper\Dev\Registration\bin\debug\HouseFlipper.WebSite.Registration.exe";
+            Process p = new Process();
+            p.StartInfo = new ProcessStartInfo(exe, "-help");
+            p.StartInfo.CreateNoWindow = true;
+            p.StartInfo.RedirectStandardError = true;            
+            p.StartInfo.RedirectStandardOutput = true;
+            p.StartInfo.UseShellExecute = true;
+            p.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            p.Start();
+
+            /* Step 2: Read output from file            
+             */
+            string output = p.StandardOutput.ReadToEnd();
+            string error = p.StandardError.ReadToEnd();
+            p.WaitForExit((int)TimeSpan.FromMinutes(1).TotalMilliseconds);
+            Assert.IsTrue(string.IsNullOrWhiteSpace(error));
+            Assert.IsTrue(!string.IsNullOrWhiteSpace(output));
         }
 
         [Test]
