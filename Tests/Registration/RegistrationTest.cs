@@ -60,8 +60,8 @@ namespace Test.HouseFlipper.Registration
             string error = p.StandardError.ReadToEnd();
             Console.WriteLine("Error: {0}", error);
 
-            Assert.IsTrue(string.IsNullOrWhiteSpace(error));
-            Assert.IsTrue(!string.IsNullOrWhiteSpace(output));
+            Assert.IsTrue(string.IsNullOrWhiteSpace(error),"Error: Was not expecting error output!");
+            Assert.IsTrue(!string.IsNullOrWhiteSpace(output), "Error: Expecting -help would show some output, but appears nothing has been printed to the screen!");
         }
     }
 }
