@@ -27,9 +27,13 @@ namespace HouseFlipper.WebSite.Registration
                         return;
                 }
             }
+            else
+            {
+                Default();
+            }
         }
 
-        private static void DoStuff()
+        private static void Default()
         {
             string env = "dev";
             string webSiteName = string.Format("House Flipper - {0}", env.ToUpper());
