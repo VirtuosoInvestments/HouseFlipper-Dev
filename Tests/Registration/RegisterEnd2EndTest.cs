@@ -40,8 +40,65 @@ namespace Test.HouseFlipper.Registration
 
             Assert.IsTrue(string.IsNullOrWhiteSpace(error), "Error: Was not expecting error output!");
             Assert.IsTrue(!string.IsNullOrWhiteSpace(output), "Error: Expecting some output, but appears nothing has been printed to the screen!");
+
+            /* Step 3: Verify output
+             */
+            var expectedOutput = new string[]
+            {
+                "Registering HouseFlipper website",
+                "SITE: House Flipper - DEV",
+                "URL: http://localhost:8080"
+            };
+            VerifyExeOutput(output, expectedOutput);
         }
 
+        #region Verification methods
+        private static void VerifyExeOutput(string output, string[] expectedOutput)
+        {
+            List<int> notFound = new List<int>();
+            var actualLines = output.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            var index = -1;
+            foreach (var eLine in expectedOutput)
+            {
+                ++index;
+                var expected = eLine.ToLower().Trim();
+                var found = false;
+                foreach (var aLine in actualLines)
+                {
+                    if (string.IsNullOrWhiteSpace(aLine))
+                    {
+                        continue;
+                    }
+                    var actual = aLine.Trim().ToLower();
+
+                    if (actual.Equals(expected))
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found)
+                {
+                    notFound.Add(index);
+                }
+            }
+
+            if (notFound.Count > 0)
+            {
+                Console.WriteLine("Error: Following information was not displayed by -help");
+                Console.WriteLine("".PadLeft(50, '-'));
+                foreach (var i in notFound)
+                {
+                    var missing = expectedOutput[i];
+                    Console.WriteLine(missing);
+                }
+                Console.WriteLine();
+                Assert.Fail();
+            }
+        }
+        #endregion Verification methods
+
+        #region Helper methods
         private static string ReadError(Process p)
         {
             string error = p.StandardError.ReadToEnd();
@@ -80,5 +137,6 @@ namespace Test.HouseFlipper.Registration
 
             return p;
         }
+        #endregion Helper methods
     }
 }
