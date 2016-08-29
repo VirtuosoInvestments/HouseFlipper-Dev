@@ -12,7 +12,7 @@ namespace Test.HouseFlipper.Registration
     public class RegistrationOptionsTest
     {
         private string exe = @"C:\GitHub\Sites\HouseFlipper\Dev\Registration\bin\debug\HouseFlipper.WebSite.Registration.exe";
-        [SetUp]
+        [OneTimeSetUp]
         public void Setup()
         {
             /* Setup:
